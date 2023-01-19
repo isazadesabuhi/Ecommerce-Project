@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("store.urls")),
 ]
+
+# accesing to images like for ex: http://127.0.0.1:8000/images/headphones.jpg
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
