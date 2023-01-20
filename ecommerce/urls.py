@@ -25,3 +25,4 @@ urlpatterns = [
 
 # accesing to images like for ex: http://127.0.0.1:8000/images/headphones.jpg
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
