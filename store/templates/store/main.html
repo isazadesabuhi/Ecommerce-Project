@@ -2,8 +2,7 @@
 {% load static %}
 <html>
   <head>
-    <title>Ecom</title>
-
+    <title>MyEcom</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"
@@ -67,11 +66,28 @@
         document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
       }
       console.log("Cart:", cart);
+
+      //adding function for search option
+      function search_product() {
+        let input = document.getElementById('searchbar').value
+        input=input.toLowerCase();
+        let x = document.getElementsByClassName('col-lg-4');
+          
+        for (i = 0; i < x.length; i++) { 
+            if (!x[i].innerHTML.toLowerCase().includes(input)) {
+                x[i].style.display="none";
+            }
+            else {
+                x[i].style.display="list-item";                 
+            }
+        }
+}
+
     </script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="{% url 'store' %}">Ecom</a>
+      <a class="navbar-brand" href="{% url 'store' %}">MyEcom</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -90,6 +106,11 @@
             <a class="nav-link" href="{% url 'store' %}"
               >Store <span class="sr-only">(current)</span></a
             >
+          </li>
+          <!--adding search option-->
+          <li class="nav-item active">
+            <input id="searchbar" onkeyup="search_product()" type="text"
+        name="search" placeholder="Search products..">
           </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">
